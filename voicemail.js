@@ -25,13 +25,13 @@ const SEARCH_PERIOD_IN_DAYS = 1;
 exports.process = async (event) => {
   // Agent would have just gotten off a call, so make it Available again
   // Errors are ignored so we still attempt the processing of the voicemail.
-  try {
-    agent.sendLoginEvent({
-      event: VOICEMAIL_PROCESSED_EVENT,
-    });
-  } catch (err) {
-    console.log(err);
-  }
+  // try {
+  //   agent.sendLoginEvent({
+  //     event: VOICEMAIL_PROCESSED_EVENT,
+  //   });
+  // } catch (err) {
+  //   console.log(err);
+  // }
 
   // Process the voicemail message
   try {
@@ -44,8 +44,8 @@ exports.process = async (event) => {
       return {success: true};
     }
 
-    voicemail.transcript = await transcribeRecording(voicemail);
-    voicemail.preSignedUrl = await getPresignedS3Url(voicemail);
+    // voicemail.transcript = await transcribeRecording(voicemail);
+    // voicemail.preSignedUrl = await getPresignedS3Url(voicemail);
 
     await sendNotification(voicemail);
 
